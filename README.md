@@ -133,6 +133,8 @@ GemBot is configured as a female AI assistant named **Gembot**, with the followi
 
 **Fayyaz Nisar Shaikh**  
 Embedded Systems Developer  
+https://www.linkedin.com/in/fayyaz-shaikh-7646312a3/
+fayyaz.nisar.shaikh@gmail.com
 Created: 11-03-2026
 
 ---
