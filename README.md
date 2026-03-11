@@ -6,7 +6,7 @@
 
 ## 📌 Project Overview
 
-GemBot is a voice-activated AI assistant built on an ESP32 microcontroller. Press and hold a button to speak — your voice is transcribed by a local Whisper server, processed by Gemini AI, and the response is spoken back through an I2S speaker in real time.
+GemBot is a voice-activated AI assistant built on an ESP32 microcontroller. Press and hold the button to speak — your voice is transcribed by a local Whisper server, processed by Gemini AI (On ESP32), and the response is spoken back through an I2S speaker in real time via gTTS (Google TTS running on server)
 
 ```
 [Button Press] → [I2S Mic] → [Whisper STT Server (GPU)] → [Gemini API] → [gTTS Server] → [I2S Speaker]
