@@ -84,17 +84,17 @@ GEMINI_API_KEY = "your_gemini_api_key"
 
 ### Flashing
 
-Use [Thonny IDE](https://thonny.org/) or `ampy` to upload the MicroPython script to your ESP32.
+Use [Thonny IDE](https://thonny.org/) or to upload the MicroPython script to your ESP32.
 
 ---
 
 ## 🔁 How It Works
 
 1. **Button held** → ESP32 starts recording via I2S mic at **16kHz, 16-bit mono**
-2. Audio is **amplified** (default GAIN=100) and streamed to the STT server over TCP
-3. **Whisper** on the GPU transcribes the audio and returns text
-4. The transcription is sent to **Gemini 2.5 Flash** with a system prompt
-5. Gemini's response is sent to the **TTS server**
+2. Audio is **amplified** (default GAIN=100) and streamed to the STT server over TCP by ESP32
+3. **Whisper** on the GPU transcribes the audio and returns text to the ESP32
+4. The transcription is sent to **Gemini 2.5 Flash** with a system prompt by ESP32
+5. Gemini's response is sent back to the ESP32 which then sends it to the other port of **TTS server**
 6. **gTTS** converts the text to speech (auto-detects Hindi/English)
 7. Audio is streamed back to ESP32 and played via the I2S speaker at **44100Hz**
 
@@ -126,17 +126,6 @@ GemBot is configured as a female AI assistant named **Gembot**, with the followi
 
 - A `debug_received.wav` file is saved on the server after each STT request — inspect it to verify mic audio quality.
 - Server logs print audio byte count, amplitude range, detected language, and transcription for each request.
-
----
-
-## 📁 File Structure
-
-```
-gembot/
-├── gembot_server_final.py   # Python server (runs on PC/GPU)
-├── esp32_main.py            # MicroPython firmware for ESP32
-└── README.md
-```
 
 ---
 
