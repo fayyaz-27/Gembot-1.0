@@ -75,8 +75,8 @@ SSID = "your_wifi_name"
 PASSWORD = "your_wifi_password"
 
 # Server IP (your PC's local IP)
-STT_IP = "192.168.1.100"
-TTS_IP = "192.168.1.100"
+STT_IP = "x.x.x.x"
+TTS_IP = "x.x.x.x"
 
 # Gemini API Key
 GEMINI_API_KEY = "your_gemini_api_key"
