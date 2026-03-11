@@ -6,8 +6,8 @@ import urequests
 import struct
 
 # Wi-Fi 
-SSID = "sonu tannu"
-PASSWORD = "A@10101981"
+SSID = "SSID"
+PASSWORD = "PW"
 
 def connect_wifi():
     wlan = network.WLAN(network.STA_IF)
@@ -55,9 +55,9 @@ i2s_speaker = I2S(
 )
 
 # Server Settings
-STT_IP = "192.168.1.100"
+STT_IP = "x.x.x.x"
 STT_PORT = 5005
-TTS_IP = "192.168.1.100"
+TTS_IP = "x.x.x.x"
 TTS_PORT = 5006
 END_MARKER = b'END_AUDIO'
 
@@ -84,8 +84,7 @@ def amplify_audio(buf, num_bytes):
     return struct.pack(f'<{len(amplified)}h', *amplified)
 
 # Gemini API Settings
-#GEMINI_API_KEY = "AIzaSyCxgPEjlBXSLKXG9rYT-CnxL8J_CFSEV58"
-GEMINI_API_KEY = "AIzaSyCBBVOUfMnNB6KXjI7gtCsRLuH2Qom2PoI"
+GEMINI_API_KEY = "Your_API_Key"
 GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
 
 SYSTEM_PROMPT = (
