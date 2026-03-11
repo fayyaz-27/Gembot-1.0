@@ -16,14 +16,14 @@ import subprocess
 from gtts import gTTS
 import threading
 
-# ---------------- Settings ----------------
+# Settings
 TCP_IP = '0.0.0.0'
 STT_PORT = 5005
 TTS_PORT = 5006
 BUFFER_SIZE = 4096
 END_MARKER = b'END_AUDIO'
 
-# ---------------- Load Whisper ----------------
+# Load Whisper
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Loading Whisper on {device}...")
 
@@ -31,7 +31,7 @@ print(f"Loading Whisper on {device}...")
 model = whisper.load_model("medium.en", device=device)  # or "large" for better accuracy
 print("Whisper ready")
 
-# ---------------- STT Handler ----------------
+# STT Handler
 def handle_stt(conn):
     try:
         while True:
@@ -47,20 +47,20 @@ def handle_stt(conn):
                 audio_bytes += chunk
 
             if not audio_bytes:
-                print("⚠️  Received empty audio!")
+                print(" Received empty audio!")
                 continue
 
             # DIAGNOSTIC INFO
-            print(f"📊 Audio received: {len(audio_bytes)} bytes")
+            print(f"Audio received: {len(audio_bytes)} bytes")
 
             # Convert audio to numpy array
             audio_np = np.frombuffer(audio_bytes, dtype=np.int16)
-            print(f"📊 Samples: {len(audio_np)}, Duration: {len(audio_np)/16000:.2f}s @ 16kHz")
-            print(f"📊 Audio range: min={audio_np.min()}, max={audio_np.max()}, mean={audio_np.mean():.1f}")
+            print(f"Samples: {len(audio_np)}, Duration: {len(audio_np)/16000:.2f}s @ 16kHz")
+            print(f"Audio range: min={audio_np.min()}, max={audio_np.max()}, mean={audio_np.mean():.1f}")
 
             # Check if audio is silent or corrupted
             if np.abs(audio_np).max() < 100:
-                print("⚠️  Audio seems silent (max amplitude < 100)")
+                print(" Audio seems silent (max amplitude < 100)")
                 conn.sendall(b"[Silent audio detected]\n")
                 continue
 
@@ -71,7 +71,7 @@ def handle_stt(conn):
                 wf.setsampwidth(2)  # 16-bit
                 wf.setframerate(16000)
                 wf.writeframes(audio_bytes)
-            print("💾 Saved debug_received.wav for inspection")
+            print("Saved debug_received.wav for inspection")
 
             # Normalize audio to [-1, 1] float32
             audio_tensor = torch.from_numpy(audio_np.astype(np.float32) / 32768.0)
@@ -90,8 +90,8 @@ def handle_stt(conn):
             transcription = result["text"].strip()
             detected_lang = result.get("language", "unknown")
 
-            print(f"🗣️  Detected language: {detected_lang}")
-            print(f"📝 Transcription: '{transcription}'")
+            print(f" Detected language: {detected_lang}")
+            print(f"Transcription: '{transcription}'")
             print("-" * 60)
 
             # Send transcription
@@ -101,7 +101,7 @@ def handle_stt(conn):
                 conn.sendall(b"[No speech detected]\n")
 
     except Exception as e:
-        print(f"❌ STT Error: {e}")
+        print(f"STT Error: {e}")
         import traceback
         traceback.print_exc()
     finally:
