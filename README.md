@@ -1,6 +1,6 @@
 # 🤖 GemBot — ESP32 AI Voice Assistant
 
-> An embedded AI voice assistant integrating **ESP32**, **OpenAI Whisper (STT)**, **Google Gemini (LLM)**, and **gTTS (TTS)** over a local TCP server running on an NVIDIA GPU.
+> An embedded AI voice assistant integrating **ESP32**, **INMP441 Microphone Module**, **MAX98357 Module with Speaker**, **OpenAI Whisper (STT)**, **Google Gemini (LLM)**, and **gTTS (TTS)** over a local TCP server running on an NVIDIA GPU.
 
 ---
 
